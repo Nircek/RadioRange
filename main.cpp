@@ -10,5 +10,8 @@
 int main()
 {
     sf::Window window( sf::VideoMode( WINDOWWIDTH, WINDOWHEIGHT, 32 ),  std::string(TITLE)+" "+VERSIONNAME, WINDOWFULLSCREEN?sf::Style::Fullscreen:sf::Style::Default);
+    while(window.isOpen()){
+        window.display();
+    }
     return 0;
 }
