@@ -9,8 +9,9 @@
 			<Target title="Debug">
 				<Option output="bin/Debug/RadioRange" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
-				<Option type="0" />
+				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -52,6 +53,92 @@
 			<Add directory="../../libs/SFML-2.3.2/lib" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="noise/basictypes.h" />
+		<Unit filename="noise/exception.h" />
+		<Unit filename="noise/interp.h" />
+		<Unit filename="noise/latlon.cpp" />
+		<Unit filename="noise/latlon.h" />
+		<Unit filename="noise/mathconsts.h" />
+		<Unit filename="noise/misc.h" />
+		<Unit filename="noise/model/cylinder.cpp" />
+		<Unit filename="noise/model/cylinder.h" />
+		<Unit filename="noise/model/line.cpp" />
+		<Unit filename="noise/model/line.h" />
+		<Unit filename="noise/model/model.h" />
+		<Unit filename="noise/model/plane.cpp" />
+		<Unit filename="noise/model/plane.h" />
+		<Unit filename="noise/model/sphere.cpp" />
+		<Unit filename="noise/model/sphere.h" />
+		<Unit filename="noise/module/abs.cpp" />
+		<Unit filename="noise/module/abs.h" />
+		<Unit filename="noise/module/add.cpp" />
+		<Unit filename="noise/module/add.h" />
+		<Unit filename="noise/module/billow.cpp" />
+		<Unit filename="noise/module/billow.h" />
+		<Unit filename="noise/module/blend.cpp" />
+		<Unit filename="noise/module/blend.h" />
+		<Unit filename="noise/module/cache.cpp" />
+		<Unit filename="noise/module/cache.h" />
+		<Unit filename="noise/module/checkerboard.cpp" />
+		<Unit filename="noise/module/checkerboard.h" />
+		<Unit filename="noise/module/clamp.cpp" />
+		<Unit filename="noise/module/clamp.h" />
+		<Unit filename="noise/module/const.cpp" />
+		<Unit filename="noise/module/const.h" />
+		<Unit filename="noise/module/curve.cpp" />
+		<Unit filename="noise/module/curve.h" />
+		<Unit filename="noise/module/cylinders.cpp" />
+		<Unit filename="noise/module/cylinders.h" />
+		<Unit filename="noise/module/displace.cpp" />
+		<Unit filename="noise/module/displace.h" />
+		<Unit filename="noise/module/exponent.cpp" />
+		<Unit filename="noise/module/exponent.h" />
+		<Unit filename="noise/module/invert.cpp" />
+		<Unit filename="noise/module/invert.h" />
+		<Unit filename="noise/module/max.cpp" />
+		<Unit filename="noise/module/max.h" />
+		<Unit filename="noise/module/min.cpp" />
+		<Unit filename="noise/module/min.h" />
+		<Unit filename="noise/module/module.h" />
+		<Unit filename="noise/module/modulebase.cpp" />
+		<Unit filename="noise/module/modulebase.h" />
+		<Unit filename="noise/module/multiply.cpp" />
+		<Unit filename="noise/module/multiply.h" />
+		<Unit filename="noise/module/perlin.cpp" />
+		<Unit filename="noise/module/perlin.h" />
+		<Unit filename="noise/module/power.cpp" />
+		<Unit filename="noise/module/power.h" />
+		<Unit filename="noise/module/ridgedmulti.cpp" />
+		<Unit filename="noise/module/ridgedmulti.h" />
+		<Unit filename="noise/module/rotatepoint.cpp" />
+		<Unit filename="noise/module/rotatepoint.h" />
+		<Unit filename="noise/module/scalebias.cpp" />
+		<Unit filename="noise/module/scalebias.h" />
+		<Unit filename="noise/module/scalepoint.cpp" />
+		<Unit filename="noise/module/scalepoint.h" />
+		<Unit filename="noise/module/select.cpp" />
+		<Unit filename="noise/module/select.h" />
+		<Unit filename="noise/module/spheres.cpp" />
+		<Unit filename="noise/module/spheres.h" />
+		<Unit filename="noise/module/terrace.cpp" />
+		<Unit filename="noise/module/terrace.h" />
+		<Unit filename="noise/module/translatepoint.cpp" />
+		<Unit filename="noise/module/translatepoint.h" />
+		<Unit filename="noise/module/turbulence.cpp" />
+		<Unit filename="noise/module/turbulence.h" />
+		<Unit filename="noise/module/voronoi.cpp" />
+		<Unit filename="noise/module/voronoi.h" />
+		<Unit filename="noise/noise.h" />
+		<Unit filename="noise/noisegen.cpp" />
+		<Unit filename="noise/noisegen.h" />
+		<Unit filename="noise/vectortable.h" />
+		<Unit filename="noise/win32/dllmain.cpp" />
+		<Unit filename="noise/win32/noise.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="noise/win32/resource.h" />
+		<Unit filename="noiseutils.cpp" />
+		<Unit filename="noiseutils.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
