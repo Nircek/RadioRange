@@ -16,6 +16,8 @@
 #define MAPWIDTH            600
 #define MAPHEIGHT           600
 #define MAPSEED             1234
+#define WATERLEVEL          45 // /256
+#define POZIOMICALEVEL      50 // /256 czym wiecej tym wieksze poziomice
 
 #define MAPVIEWWIDTH        600
 #define MAPVIEWHEIGHT       600
@@ -40,9 +42,10 @@ class heightmap{
 
 
         module::Perlin myModule;
-        myModule.SetOctaveCount (6);
+        myModule.SetOctaveCount (4);
         myModule.SetFrequency (0.8);
         myModule.SetPersistence (0.3);
+        myModule.SetSeed(seed);
 
         utils::NoiseMap heightMap;
 
@@ -68,19 +71,23 @@ class heightmap{
                            size_t viewxscroll, size_t viewyscroll,
                            size_t viewxoffset, size_t viewyoffset){
         size_t x,y,size=viewwidth*viewheight;
-        pixel tmp;
+        pixel tmp,all;
 
         VertexArray mapview(Points, size);
         for(size_t i=0;i<size;++i){
             x=i%viewwidth;
             y=i/viewwidth;
-            tmp=pixels[x+viewxscroll][y+viewyscroll]>>(sizeof(pixel)*8-8);
+            tmp=(pixels[x+viewxscroll][y+viewyscroll]>>20)%256; //poziomice
+            all=(pixels[x+viewxscroll][y+viewyscroll]>>(sizeof(pixel)*8-8));//przez calosc
+            if(tmp>256-POZIOMICALEVEL)tmp=0;
+            else tmp=255;
+            if(all<WATERLEVEL)tmp=0;
             mapview[i].position.x=x+viewxoffset;
             mapview[i].position.y=y+viewyoffset;
             mapview[i].color.a=255;
             mapview[i].color.r=tmp;
             mapview[i].color.g=tmp;
-            mapview[i].color.b=tmp;
+            mapview[i].color.b=(all<WATERLEVEL)?255:0;
         }
         return mapview;
     }
