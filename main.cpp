@@ -3,6 +3,7 @@
 #include "noiseutils.h"
 #include <cstring>
 #include <ctime>
+#include <cmath>
 
 #include <iostream>
 
@@ -15,7 +16,7 @@
 
 #define MAPWIDTH            600
 #define MAPHEIGHT           600
-#define MAPSEED             1234
+#define MAPSEED             0
 #define WATERLEVEL          45 // /256
 #define POZIOMICALEVEL      50 // /256 czym wiecej tym wieksze poziomice
 
@@ -27,8 +28,36 @@
 #define MAPVIEWXSCROLL      0
 #define MAPVIEWYSCROLL      0
 
-typedef uint32_t pixel;
+#define MAXSIGNALS          MAPWIDTH*MAPHEIGHT
+#define SIGNALMAXVALUE      500
+
 using namespace sf;
+class radiosignal{
+    double x,y;
+    double alfa;
+    double value;
+    public:
+    radiosignal(double x,double y, double alfa, double value):
+        x(x),y(y),alfa(alfa),value(value){
+
+    }
+    bool next(){
+        x+=(cos(((alfa-90)*M_PI)/180))*2;
+        y+=(sin(((alfa-90)*M_PI)/180))*2;
+        if(x<0||y<0||x>MAPWIDTH||y>MAPHEIGHT)return false;
+        value--;
+        return true;
+    }
+    Vertex gen(){
+        uint8_t alpha;
+        if(value>SIGNALMAXVALUE)alpha=255;
+        else alpha=value/SIGNALMAXVALUE*255;
+        std::cout<<(int)alpha<<" ";
+        return Vertex(Vector2f(x+MAPVIEWXOFFSET,y+MAPVIEWYOFFSET),Color(0,0,255,alpha));
+    }
+};
+
+typedef uint32_t pixel;
 class heightmap{
     pixel **pixels;
     size_t width, height;
@@ -105,6 +134,8 @@ int main()
     heightmap *m = new heightmap(MAPWIDTH,MAPHEIGHT,MAPSEED);
     VertexArray mapview = m->genmapview(MAPVIEWWIDTH, MAPVIEWHEIGHT, MAPVIEWXSCROLL, MAPVIEWYSCROLL, MAPVIEWXOFFSET,MAPVIEWYOFFSET);
 
+    radiosignal *s = new radiosignal(5,5,90,500);
+    int i=10;
     //----
     while(window.isOpen()){
         Event newEvent;
@@ -129,7 +160,17 @@ int main()
         window.clear(sf::Color(128,128,128));
         //code
         window.draw(mapview);
-
+        Vertex radiosignals[1];
+        if(i==0){
+            i=4;
+            if(!s->next()){
+                delete s;
+                s=new radiosignal(5,5,90+45,500);
+            }
+        }
+        radiosignals[0]=s->gen();
+        window.draw(radiosignals,1,Points);
+        --i;
         //----
         window.display();
     }
